@@ -4,21 +4,19 @@ import java.awt.*;
 import java.util.*;
 
 public class ConsultaEntrega extends JDialog {
-    private Transportadora transportadora;
     private JTable entregaTable;
-    private DefaultTableModel tableModel;
-    private JTextArea textAreaDetalhes;
+    private DefaultTableModel tabelaModelo; //interface com tabela de modelo padrao;
+    private JTextArea textAreaDetalhes;  //mostra varias linhas
 
     public ConsultaEntrega(Frame parent, Transportadora transportadora) {
         super(parent, "Consultar Entregas", true);
-        this.transportadora = transportadora;
-
         setLayout(new BorderLayout(10, 10));
-        setSize(600, 400);
+        setSize(800, 400);
+        setLocationRelativeTo(null);
 
-        String[] columnNames = {"ID", "Distância", "Placa Caminhão", "Modelo Caminhão", "Quantidade de Cargas", "Valor Total"};
-        tableModel = new DefaultTableModel(columnNames, 0);
-        entregaTable = new JTable(tableModel);
+        String[] columnNames = {"ID", "Distância", "Cidade", "Placa Caminhão", "Modelo Caminhão", "Quantidade de Cargas", "Valor Total"}; //colunas da tabela
+        tabelaModelo = new DefaultTableModel(columnNames, 0);
+        entregaTable = new JTable(tabelaModelo);
         entregaTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         entregaTable.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
@@ -30,17 +28,18 @@ public class ConsultaEntrega extends JDialog {
             }
         });
 
-        // Preencher a tabela com os dados das entregas
+        // Preenche tabela com dados percorrendo o vetor
         for (Entrega entrega : transportadora.consultarEntregas()) {
             Object[] rowData = {
                     entrega.getId(),
                     entrega.getDistancia(),
+                    entrega.getCidade(),
                     entrega.getCaminhao().getPlaca(),
                     entrega.getCaminhao().getModelo(),
                     entrega.getCargas().size(),
                     entrega.calcularValorTotal()
             };
-            tableModel.addRow(rowData);
+            tabelaModelo.addRow(rowData);
         }
 
         JScrollPane tableScrollPane = new JScrollPane(entregaTable);
@@ -58,6 +57,7 @@ public class ConsultaEntrega extends JDialog {
     private void mostrarDetalhesEntrega(Entrega entrega) {
         StringBuilder detalhes = new StringBuilder();
         detalhes.append("ID: ").append(entrega.getId()).append("\n");
+        detalhes.append("Cidade: ").append(entrega.getCidade()).append("\n");
         detalhes.append("Distância: ").append(entrega.getDistancia()).append("\n");
         detalhes.append("Caminhão: ").append(entrega.getCaminhao().getPlaca()).append(" - ").append(entrega.getCaminhao().getModelo()).append("\n");
         detalhes.append("Cargas:\n");

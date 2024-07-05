@@ -6,16 +6,18 @@ public class Entrega {
     private List<Carga> cargas;
     private double distancia;
     private Caminhao caminhao;
-    private static final double valorFixo = 100.0;
+    private static final double valorFixo = 10.0;
 
-    public Entrega(double distancia, Caminhao caminhao) {
+    private String cidade;
+
+    public Entrega(double distancia, Caminhao caminhao, String cidade) {
         this.id = cont++;
         this.cargas = new ArrayList<>();
         this.distancia = distancia;
         this.caminhao = caminhao;
+
+        this.cidade = cidade;
     }
-
-
 
     public int getId() {
         return id;
@@ -33,19 +35,13 @@ public class Entrega {
         return distancia;
     }
 
+    public String getCidade() { return cidade;}
+
     public Caminhao getCaminhao() {
         return caminhao;
     }
 
     public List<Carga> getCargas() {
         return cargas;
-    }
-
-    public String toString() {
-        return "Entrega{" +
-                "id=" + id +
-                ", distancia=" + distancia +
-                ", caminhao=" + caminhao.toString() +
-                '}';
     }
 }

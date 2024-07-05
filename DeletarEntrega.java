@@ -15,11 +15,11 @@ public class DeletarEntrega extends JFrame {
     }
 
     private void initUI() {
-        setTitle("Deletar Entrega");
-        setSize(300, 200);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setLayout(new GridLayout(3, 2));
+        this.setTitle("Deletar Entrega");
+        this.setSize(300, 175);
+        this.setLayout(new GridLayout(3, 2, 10, 10));
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
 
         JLabel entregaIdLabel = new JLabel("ID da Entrega:");
         entregaIdField = new JTextField();
@@ -36,12 +36,18 @@ public class DeletarEntrega extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    if (entregaIdField.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Por favor, insira um ID.");
+                        return;
+                    }
+
                     int entregaId = Integer.parseInt(entregaIdField.getText());
                     boolean sucesso = transportadora.deletarEntrega(entregaId);
+
                     if (sucesso) {
-                        JOptionPane.showMessageDialog(null, "Nao foi possivel deletar a tela.");
+                        JOptionPane.showMessageDialog(null, "Entrega deletada com sucesso.");
                     } else {
-                        JOptionPane.showMessageDialog(null, "Entrega Deletada com Sucesso.");
+                        JOptionPane.showMessageDialog(null, "ID da entrega não encontrado.");
                     }
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Por favor, insira um ID válido.");
@@ -55,17 +61,6 @@ public class DeletarEntrega extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-            }
-        });
-    }
-    //pra testar a tela , nao executando o App
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                Transportadora transportadora = new Transportadora();
-                DeletarEntrega ex = new DeletarEntrega(transportadora);
-                ex.setVisible(true);
             }
         });
     }

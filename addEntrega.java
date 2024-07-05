@@ -5,36 +5,36 @@ import java.awt.event.ActionListener;
 
 public class addEntrega extends JDialog {
     private static final double valorFixo = 100.0;
-    private Transportadora transportadora;
     private JTextField textFieldDistancia;
     private JComboBox<Caminhao> comboBoxCaminhao;
     private JTextField textFieldQuantidaCargas;
 
     public addEntrega(Frame parent, Transportadora transportadora) {
         super(parent, "Adicionar Entrega", true);
-        this.transportadora = transportadora;
         this.setLayout(new BorderLayout(10, 10));
-        this.setSize(400, 300);
+        this.setSize(700, 300);
+        this.setResizable(false);
+        setLocationRelativeTo(null);
 
-        JPanel panel = new JPanel(new GridLayout(4, 2, 10, 10));
+        JPanel painel = new JPanel(new GridLayout(4, 2, 10, 10));
 
         //botao distancia
-        panel.add(new JLabel("Distância:"));
+        painel.add(new JLabel("Distância:"));
         textFieldDistancia = new JTextField();
-        panel.add(textFieldDistancia);
+        painel.add(textFieldDistancia);
 
         //botao quantidade de cargas
-        panel.add(new JLabel("Quantidade de Cargas:"));
+        painel.add(new JLabel("Quantidade de Cargas:"));
         textFieldQuantidaCargas = new JTextField();
-        panel.add(textFieldQuantidaCargas);
+        painel.add(textFieldQuantidaCargas);
 
         //botao caminhao
-        panel.add(new JLabel("Caminhão:"));
+        painel.add(new JLabel("Caminhão:"));
         comboBoxCaminhao = new JComboBox<>();
         for (Caminhao caminhao : transportadora.consultarCaminhaoes()) {
             comboBoxCaminhao.addItem(caminhao);
         }
-        panel.add(comboBoxCaminhao);
+        painel.add(comboBoxCaminhao);
 
         //botao adicionar com evento
         JButton addButton = new JButton("Adicionar");
@@ -57,14 +57,16 @@ public class addEntrega extends JDialog {
                     transportadora.adicionarEntrega(entrega);
                     JOptionPane.showMessageDialog(addEntrega.this, "Entrega adicionada com sucesso!");
                     dispose();
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(addEntrega.this, "Insira apenas valores numéricos nos campos.", "Erro de Formato", JOptionPane.ERROR_MESSAGE);
                 } catch (ExcessaoPersonalizada ex) {
-                    throw new RuntimeException(ex);
+                    JOptionPane.showMessageDialog(addEntrega.this, "Ocorreu um erro ao adicionar a entrega: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
 
         //adiciona o painel
-        add(panel, BorderLayout.CENTER);
+        add(painel, BorderLayout.CENTER);
         add(addButton, BorderLayout.SOUTH);
     }
 }

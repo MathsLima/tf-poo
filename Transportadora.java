@@ -20,11 +20,11 @@ public class Transportadora {
         caminhoes.add(caminhao2);
         caminhoes.add(caminhao3);
 
-        Entrega entrega1 = new Entrega(25, caminhao1);
+        Entrega entrega1 = new Entrega(25, caminhao1, "Porto Alegre");
         entrega1.adicionarCarga(new Carga(30));
         entrega1.adicionarCarga(new Carga(200.0));
 
-        Entrega entrega2 = new Entrega(150, caminhao2);
+        Entrega entrega2 = new Entrega(150, caminhao2, "Gravatai");
         entrega2.adicionarCarga(new Carga(300.0));
     }
 
@@ -57,6 +57,10 @@ public class Transportadora {
         return caminhoes;
     }
 
+    public void adicionarCaminhao(Caminhao cam) {
+        caminhoes.add(cam);
+    }
+
 
     public double consultarValoresEntregas(){
         return entregas.stream()
@@ -64,7 +68,29 @@ public class Transportadora {
                 .sum();
     }
 
-    public void adicionarCaminhao(Caminhao cam) {
-        caminhoes.add(cam);
+    public int qtdCargas(){
+        return entregas.stream()
+                .mapToInt(entrega -> entrega.getCargas().size())
+                .sum();
+    }
+
+    public double somaDistancia(){
+        return entregas.stream()
+                .mapToDouble(Entrega::getDistancia)
+                .sum();
+    }
+
+    public double totalEntregas(){
+        return entregas.size();
+    }
+
+    public double mediaCargasEntrega(){
+        int cargasTotal = qtdCargas();
+        int  entregasTotal = entregas.size();
+        if(entregasTotal ==0){
+            return 0;
+        } else{
+            return cargasTotal / entregasTotal;
+        }
     }
 }

@@ -4,22 +4,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class addEntrega extends JDialog {
-    private static final double valorFixo = 100.0;
+    private static final double valorFixo = 10.0;
     private JTextField textFieldDistancia;
     private JComboBox<Caminhao> comboBoxCaminhao;
     private JTextField textFieldQuantidaCargas;
+    private JTextField textFieldCidade;
 
     public addEntrega(Frame parent, Transportadora transportadora) {
         super(parent, "Adicionar Entrega", true);
         this.setLayout(new BorderLayout(10, 10));
         this.setSize(700, 300);
         this.setResizable(false);
-        setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
 
         JPanel painel = new JPanel(new GridLayout(4, 2, 10, 10));
 
+        //botao cidade
+        JLabel cidadeLabel = new JLabel("Cidade Destino:"); // Adicionado
+        textFieldCidade = new JTextField();
+        painel.add(cidadeLabel);
+        painel.add(textFieldCidade);
+
         //botao distancia
-        painel.add(new JLabel("Distância:"));
+        painel.add(new JLabel("Distância(km):"));
         textFieldDistancia = new JTextField();
         painel.add(textFieldDistancia);
 
@@ -45,8 +52,9 @@ public class addEntrega extends JDialog {
                     double distancia = Double.parseDouble(textFieldDistancia.getText());
                     Caminhao caminhao = (Caminhao) comboBoxCaminhao.getSelectedItem();
                     int quantidadeargas = Integer.parseInt(textFieldQuantidaCargas.getText());
+                    String cidade = textFieldCidade.getText();
 
-                    Entrega entrega = new Entrega(distancia, caminhao);
+                    Entrega entrega = new Entrega(distancia, caminhao, cidade);
 
                     //add arga na entrega
                     for(int i = 0; i < quantidadeargas; i++) {

@@ -3,6 +3,7 @@ import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,7 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class addEntrega extends JDialog {
-    private static final double valorFixo = 10.0;
     private JTextField textFieldDistancia;
     private JComboBox<Veiculo> comboBoxVeiculo;
     private JTextField textFieldQuantidaCargas;
@@ -66,8 +66,12 @@ public class addEntrega extends JDialog {
                     Entrega entrega = new Entrega(distancia, veiculo, cidade);
 
                     // add arga na entrega
+                    Random random = new Random();
                     for (int i = 0; i < quantidadeargas; i++) {
-                        Carga carga = new Carga(valorFixo);
+                        int numeroVolumes = random.nextInt(50) + 1; // Número de volumes entre 1 e 50
+                        double peso = 10 + (100 - 10) * random.nextDouble(); // Peso entre 10 e 100 kg
+                        double valor = 100 + (1000 - 100) * random.nextDouble(); // Valor entre 100 e 1000
+                        Carga carga = new Carga(numeroVolumes, peso, valor);
                         entrega.adicionarCarga(carga);
                     }
 

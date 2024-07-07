@@ -1,7 +1,8 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Entrega {
-    private static int cont = 0;
+    private static int cont = 1;
     private int id;
     private List<Carga> cargas;
     private double distancia;
@@ -23,7 +24,14 @@ public class Entrega {
         return id;
     }
 
-    public void adicionarCarga(Carga carga) {
+    public void adicionarCarga(Carga carga) throws ExcessaoPersonalizada {
+        double pesoTota = cargas.stream().mapToDouble(Carga::getPeso).sum();
+
+        if (pesoTota > veiculo.getCapacidadeCarga()) {
+            throw new ExcessaoPersonalizada("Capacidade do veículoexcedida!\nCapacidade do veículo: "
+                    + veiculo.getCapacidadeCarga() + "\nCarga total: " + pesoTota);
+        }
+
         cargas.add(carga);
     }
 

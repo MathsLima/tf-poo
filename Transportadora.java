@@ -24,12 +24,6 @@ public class Transportadora {
         veiculos.add(van2);
         veiculos.add(van3);
 
-        Entrega entrega1 = new Entrega(25, caminhao1, "Porto Alegre");
-        entrega1.adicionarCarga(new Carga(30));
-        entrega1.adicionarCarga(new Carga(200.0));
-
-        Entrega entrega2 = new Entrega(150, caminhao2, "Gravatai");
-        entrega2.adicionarCarga(new Carga(300.0));
     }
 
     public void adicionarEntrega(Entrega entrega) throws ExcessaoPersonalizada {

@@ -44,7 +44,7 @@ public class ConsultaEntrega extends JDialog {
                     entrega.getVeiculo().getPlaca(),
                     entrega.getVeiculo().getModelo(),
                     entrega.getCargas().size(),
-                    entrega.calcularValorTotal()
+                    entrega.valorTotal()
             };
             tabelaModelo.addRow(rowData);
         }
@@ -74,7 +74,7 @@ public class ConsultaEntrega extends JDialog {
             detalhes.append("  - ").append(carga.getValor()).append("\n");
         }
 
-        detalhes.append("Valor Total: ").append(entrega.calcularValorTotal()).append("\n");
+        detalhes.append("Valor Total: ").append(entrega.valorTotal()).append("\n");
 
         textAreaDetalhes.setText(detalhes.toString());
     }

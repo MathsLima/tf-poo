@@ -51,6 +51,7 @@ public class DeletarEntrega extends JFrame {
 
                     if (sucesso) {
                         JOptionPane.showMessageDialog(null, "Entrega deletada com sucesso.");
+                        dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, "ID da entrega não encontrado.");
                     }

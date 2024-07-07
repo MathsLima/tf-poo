@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Transportadora {
     private List<Entrega> entregas;
@@ -59,7 +58,7 @@ public class Transportadora {
 
     public double consultarValoresEntregas() {
         return entregas.stream()
-                .mapToDouble(Entrega::calcularValorTotal)
+                .mapToDouble(Entrega::valorTotal)
                 .sum();
     }
 

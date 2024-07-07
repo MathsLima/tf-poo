@@ -7,7 +7,6 @@ public class Entrega {
     private List<Carga> cargas;
     private double distancia;
     private Veiculo veiculo;
-    private static final double valorFixo = 10.0;
 
     private String cidade;
 
@@ -35,10 +34,6 @@ public class Entrega {
         cargas.add(carga);
     }
 
-    public double calcularValorTotal() {
-        return valorFixo * distancia * cargas.size();
-    }
-
     public double getDistancia() {
         return distancia;
     }
@@ -53,5 +48,21 @@ public class Entrega {
 
     public List<Carga> getCargas() {
         return cargas;
+    }
+
+    public double pesoTotal() {
+        return cargas.stream().mapToDouble(Carga::getPeso).sum();
+    }
+
+    public int volumesTotal() {
+        return cargas.stream().mapToInt(Carga::getNumeroVolumes).sum();
+    }
+
+    public double valorTotal() {
+        return cargas.stream().mapToDouble(Carga::getValor).sum();
+    }
+
+    public double valorMedio() {
+        return cargas.isEmpty() ? 0 : valorTotal() / cargas.size();
     }
 }

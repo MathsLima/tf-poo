@@ -26,10 +26,10 @@ public class Caminhao extends Veiculo {
     @Override
     public String toString() {
         return "Caminhao{" +
-                "numeroEixos=" + numeroEixos +
+                super.toString() +
+                ", numeroEixos=" + numeroEixos +
                 ", altura=" + altura +
                 ", comprimento=" + comprimento +
-                ", " + super.toString() +
                 '}';
     }
 }

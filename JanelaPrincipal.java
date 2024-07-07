@@ -8,14 +8,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 public class JanelaPrincipal extends JFrame {
     private Transportadora transportadora;
-    private JTextArea textArea;
-    // JButton button;
-    // JLabel label;
 
     public JanelaPrincipal() {
         super();
@@ -48,13 +44,13 @@ public class JanelaPrincipal extends JFrame {
         JButton deletarEntrega = new JButton("Deletar Entrega");
         JButton consultarEntrega = new JButton("Consultar Entrega");
         JButton areaDados = new JButton("Area de Dados");
-        JButton consultarValores = new JButton("Consultar Frota de Veículos");
+        // JButton consultarValores = new JButton("Consultar Frota de Veículos");
 
         painel.add(addEntrega);
         painel.add(deletarEntrega);
         painel.add(consultarEntrega);
         painel.add(areaDados);
-        painel.add(consultarValores);
+        // painel.add(consultarValores);
         centerPanel.add(painel, BorderLayout.CENTER);
 
         // bloco texto inferior

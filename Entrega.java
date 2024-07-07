@@ -7,20 +7,34 @@ public class Entrega {
     private List<Carga> cargas;
     private double distancia;
     private Veiculo veiculo;
+    private Cidade cidade;
 
-    private String cidade;
-
-    public Entrega(double distancia, Veiculo veiculo, String cidade) {
+    public Entrega(double distancia, Veiculo veiculo, Cidade cidade) {
         this.id = cont++;
         this.cargas = new ArrayList<>();
         this.distancia = distancia;
         this.veiculo = veiculo;
-
         this.cidade = cidade;
     }
 
     public int getId() {
         return id;
+    }
+
+    public List<Carga> getCargas() {
+        return cargas;
+    }
+
+    public double getDistancia() {
+        return distancia;
+    }
+
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public Cidade getCidade() {
+        return cidade;
     }
 
     public void adicionarCarga(Carga carga) throws ExcessaoPersonalizada {
@@ -34,22 +48,6 @@ public class Entrega {
         cargas.add(carga);
     }
 
-    public double getDistancia() {
-        return distancia;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public Veiculo getVeiculo() {
-        return veiculo;
-    }
-
-    public List<Carga> getCargas() {
-        return cargas;
-    }
-
     public double pesoTotal() {
         return cargas.stream().mapToDouble(Carga::getPeso).sum();
     }
@@ -59,10 +57,11 @@ public class Entrega {
     }
 
     public double valorTotal() {
-        return cargas.stream().mapToDouble(Carga::getValor).sum();
+        return Math.round(cargas.stream().mapToDouble(Carga::getValor).sum() * 100.0) / 100.0;
     }
 
     public double valorMedio() {
-        return cargas.isEmpty() ? 0 : valorTotal() / cargas.size();
+        Double valorMedio = cargas.isEmpty() ? 0 : valorTotal() / cargas.size();
+        return Math.round(valorMedio * 100.0) / 100.0;
     }
 }

@@ -20,9 +20,9 @@ public class Van extends Veiculo {
     @Override
     public String toString() {
         return "Van{" +
-                "isolamentoTermico=" + isolamentoTermico +
+                super.toString() +
+                ", isolamentoTermico=" + isolamentoTermico +
                 ", compartimentoFragil=" + compartimentoFragil +
-                ", " + super.toString() +
                 '}';
     }
 }

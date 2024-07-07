@@ -41,13 +41,6 @@ public class Transportadora {
         return remover;
     }
 
-    public Entrega consultarEntregaID(int id) throws ExcessaoPersonalizada {
-        return entregas.stream()
-                .filter(entrega -> entrega.getId() == id)
-                .findFirst()
-                .orElse(null);
-    }
-
     public List<Entrega> consultarEntregas() {
         return new ArrayList<>(entregas);
     }
@@ -60,6 +53,12 @@ public class Transportadora {
         return entregas.stream()
                 .mapToDouble(Entrega::valorTotal)
                 .sum();
+    }
+
+    public double consultarValorMedioEntregas() {
+        return entregas.stream()
+                .mapToDouble(Entrega::valorTotal)
+                .sum() / entregas.size();
     }
 
     public int qtdCargas() {

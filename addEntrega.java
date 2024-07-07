@@ -15,24 +15,23 @@ import javax.swing.JTextField;
 
 public class addEntrega extends JDialog {
     private JTextField textFieldDistancia;
-    private JComboBox<Veiculo> comboBoxVeiculo;
     private JTextField textFieldQuantidaCargas;
-    private JTextField textFieldCidade;
+    private JComboBox<Veiculo> comboBoxVeiculo;
+    private JComboBox<Cidade> comboBoxCidade;
 
     public addEntrega(Frame parent, Transportadora transportadora) {
         super(parent, "Adicionar Entrega", true);
         this.setLayout(new BorderLayout(10, 10));
         this.setSize(700, 300);
-        this.setResizable(false);
+        // this.setResizable(false);
         this.setLocationRelativeTo(null);
 
         JPanel painel = new JPanel(new GridLayout(4, 2, 10, 10));
 
         // botao cidade
-        JLabel cidadeLabel = new JLabel("Cidade Destino:"); // Adicionado
-        textFieldCidade = new JTextField();
-        painel.add(cidadeLabel);
-        painel.add(textFieldCidade);
+        painel.add(new JLabel("Cidade Destino:"));
+        comboBoxCidade = new JComboBox<>(Cidade.values());
+        painel.add(comboBoxCidade);
 
         // botao distancia
         painel.add(new JLabel("Distância(km):"));
@@ -45,7 +44,7 @@ public class addEntrega extends JDialog {
         painel.add(textFieldQuantidaCargas);
 
         // botao veiculo
-        painel.add(new JLabel("Vaículo:"));
+        painel.add(new JLabel("Veículo:"));
         comboBoxVeiculo = new JComboBox<>();
         for (Veiculo veiculo : transportadora.consultarVeiculos()) {
             comboBoxVeiculo.addItem(veiculo);
@@ -59,9 +58,17 @@ public class addEntrega extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 try {
                     double distancia = Double.parseDouble(textFieldDistancia.getText());
+                    if (distancia <= 0) {
+                        throw new ExcessaoPersonalizada("Distância deve ser maior que zero.");
+                    }
+
                     Veiculo veiculo = (Veiculo) comboBoxVeiculo.getSelectedItem();
+
                     int quantidadeargas = Integer.parseInt(textFieldQuantidaCargas.getText());
-                    String cidade = textFieldCidade.getText();
+                    if (quantidadeargas <= 0) {
+                        throw new ExcessaoPersonalizada("Quantidade de cargas deve ser maior que zero.");
+                    }
+                    Cidade cidade = (Cidade) comboBoxCidade.getSelectedItem();
 
                     Entrega entrega = new Entrega(distancia, veiculo, cidade);
 

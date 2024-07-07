@@ -36,8 +36,10 @@ public class Transportadora {
     }
 
     public boolean deletarEntrega(int id) throws ExcessaoPersonalizada {
-        entregas.removeIf(Objects::nonNull);
-        return false;
+        boolean remover = entregas.removeIf(entrega -> entrega.getId() == id);
+        if (!remover)
+            throw new ExcessaoPersonalizada("ID da entrega não encontrado.");
+        return remover;
     }
 
     public Entrega consultarEntregaID(int id) throws ExcessaoPersonalizada {

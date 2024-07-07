@@ -1,10 +1,13 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.List;
+import java.awt.BorderLayout;
+import java.awt.Frame;
+import java.awt.GridLayout;
 
-public class AreaDados extends JDialog{
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class AreaDados extends JDialog {
     private Transportadora transportadora;
 
     public AreaDados(Frame parent, Transportadora transportadora) {
@@ -15,7 +18,7 @@ public class AreaDados extends JDialog{
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 
-        JPanel painel = new JPanel(new GridLayout(6,2,10,10));
+        JPanel painel = new JPanel(new GridLayout(6, 2, 10, 10));
 
         JLabel totalEntregas = new JLabel("Media de Cargas por Entrega");
         JLabel totalEntregasValor = new JLabel(String.valueOf(transportadora.totalEntregas()));
@@ -30,15 +33,14 @@ public class AreaDados extends JDialog{
         JLabel somaDistancia = new JLabel(String.valueOf(transportadora.somaDistancia()));
 
         JLabel qtdCaminhoesTexto = new JLabel("Quantidade de Caminhões na Frota:");
-        JLabel qtdCaminhoes = new JLabel(String.valueOf(transportadora.consultarCaminhaoes().size()));
+        JLabel qtdCaminhoes = new JLabel(String.valueOf(transportadora.consultarVeiculos().size()));
 
         JLabel mediaCargas = new JLabel("Media de Cargas por Entrega");
         JLabel mediaCargasValor = new JLabel(String.valueOf(transportadora.mediaCargasEntrega()));
 
-
         painel.add(totalEntregas);
         painel.add(totalEntregasValor);
-        
+
         painel.add(valorTotalTexto);
         painel.add(valorTotal);
 

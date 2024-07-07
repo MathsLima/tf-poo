@@ -1,12 +1,18 @@
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Frame;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.util.*;
 
 public class ConsultaEntrega extends JDialog {
     private JTable entregaTable;
-    private DefaultTableModel tabelaModelo; //interface com tabela de modelo padrao;
-    private JTextArea textAreaDetalhes;  //mostra varias linhas
+    private DefaultTableModel tabelaModelo; // interface com tabela de modelo padrao;
+    private JTextArea textAreaDetalhes; // mostra varias linhas
 
     public ConsultaEntrega(Frame parent, Transportadora transportadora) {
         super(parent, "Consultar Entregas", true);
@@ -14,7 +20,8 @@ public class ConsultaEntrega extends JDialog {
         setSize(800, 400);
         setLocationRelativeTo(null);
 
-        String[] columnNames = {"ID", "Distância", "Cidade", "Placa Caminhão", "Modelo Caminhão", "Quantidade de Cargas", "Valor Total"}; //colunas da tabela
+        String[] columnNames = { "ID", "Distância", "Cidade", "Placa Caminhão", "Modelo Caminhão",
+                "Quantidade de Cargas", "Valor Total" }; // colunas da tabela
         tabelaModelo = new DefaultTableModel(columnNames, 0);
         entregaTable = new JTable(tabelaModelo);
         entregaTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -34,8 +41,8 @@ public class ConsultaEntrega extends JDialog {
                     entrega.getId(),
                     entrega.getDistancia(),
                     entrega.getCidade(),
-                    entrega.getCaminhao().getPlaca(),
-                    entrega.getCaminhao().getModelo(),
+                    entrega.getVeiculo().getPlaca(),
+                    entrega.getVeiculo().getModelo(),
                     entrega.getCargas().size(),
                     entrega.calcularValorTotal()
             };
@@ -59,7 +66,8 @@ public class ConsultaEntrega extends JDialog {
         detalhes.append("ID: ").append(entrega.getId()).append("\n");
         detalhes.append("Cidade: ").append(entrega.getCidade()).append("\n");
         detalhes.append("Distância: ").append(entrega.getDistancia()).append("\n");
-        detalhes.append("Caminhão: ").append(entrega.getCaminhao().getPlaca()).append(" - ").append(entrega.getCaminhao().getModelo()).append("\n");
+        detalhes.append("Caminhão: ").append(entrega.getVeiculo().getPlaca()).append(" - ")
+                .append(entrega.getVeiculo().getModelo()).append("\n");
         detalhes.append("Cargas:\n");
 
         for (Carga carga : entrega.getCargas()) {

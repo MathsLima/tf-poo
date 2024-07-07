@@ -1,25 +1,35 @@
-public class Caminhao {
-    private String placa;
-    private String modelo;
+public class Caminhao extends Veiculo {
+    private int numeroEixos;
+    private double altura;
+    private double comprimento;
 
-    public Caminhao(String placa, String modelo) {
-        this.placa = placa;
-        this.modelo = modelo;
+    public Caminhao(String placa, String modelo, double capacidadeCarga, int numeroEixos, double altura,
+            double comprimento) {
+        super(placa, modelo, capacidadeCarga);
+        this.numeroEixos = numeroEixos;
+        this.altura = altura;
+        this.comprimento = comprimento;
     }
 
-    public String getPlaca() {
-        return placa;
+    public int getNumeroEixos() {
+        return numeroEixos;
     }
 
-    public String getModelo() {
-        return modelo;
+    public double getAltura() {
+        return altura;
+    }
+
+    public double getComprimento() {
+        return comprimento;
     }
 
     @Override
     public String toString() {
         return "Caminhao{" +
-                "placa='" + placa + '\'' +
-                ", modelo='" + modelo +
+                "numeroEixos=" + numeroEixos +
+                ", altura=" + altura +
+                ", comprimento=" + comprimento +
+                ", " + super.toString() +
                 '}';
     }
 }

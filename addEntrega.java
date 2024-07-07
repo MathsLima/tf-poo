@@ -45,7 +45,7 @@ public class addEntrega extends JDialog {
         painel.add(textFieldQuantidaCargas);
 
         // botao veiculo
-        painel.add(new JLabel("Caminhão:"));
+        painel.add(new JLabel("Vaículo:"));
         comboBoxVeiculo = new JComboBox<>();
         for (Veiculo veiculo : transportadora.consultarVeiculos()) {
             comboBoxVeiculo.addItem(veiculo);

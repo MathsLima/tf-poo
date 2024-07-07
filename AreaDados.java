@@ -32,8 +32,8 @@ public class AreaDados extends JDialog {
         JLabel somaDistanciaTexto = new JLabel("Distâncias a Percorrer:");
         JLabel somaDistancia = new JLabel(String.valueOf(transportadora.somaDistancia()));
 
-        JLabel qtdCaminhoesTexto = new JLabel("Quantidade de Caminhões na Frota:");
-        JLabel qtdCaminhoes = new JLabel(String.valueOf(transportadora.consultarVeiculos().size()));
+        JLabel qtdVeiculosTexto = new JLabel("Quantidade de Veículos na Frota:");
+        JLabel qtdVeiculos = new JLabel(String.valueOf(transportadora.consultarVeiculos().size()));
 
         JLabel mediaCargas = new JLabel("Media de Cargas por Entrega");
         JLabel mediaCargasValor = new JLabel(String.valueOf(transportadora.mediaCargasEntrega()));
@@ -53,8 +53,8 @@ public class AreaDados extends JDialog {
         painel.add(mediaCargas);
         painel.add(mediaCargasValor);
 
-        painel.add(qtdCaminhoesTexto);
-        painel.add(qtdCaminhoes);
+        painel.add(qtdVeiculosTexto);
+        painel.add(qtdVeiculos);
 
         add(painel, BorderLayout.CENTER);
 

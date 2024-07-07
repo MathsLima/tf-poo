@@ -20,7 +20,7 @@ public class ConsultaEntrega extends JDialog {
         setSize(800, 400);
         setLocationRelativeTo(null);
 
-        String[] columnNames = { "ID", "Distância", "Cidade", "Placa Caminhão", "Modelo Caminhão",
+        String[] columnNames = { "ID", "Distância", "Cidade", "Placa Veículo", "Modelo Veículo",
                 "Quantidade de Cargas", "Valor Total" }; // colunas da tabela
         tabelaModelo = new DefaultTableModel(columnNames, 0);
         entregaTable = new JTable(tabelaModelo);
@@ -66,7 +66,7 @@ public class ConsultaEntrega extends JDialog {
         detalhes.append("ID: ").append(entrega.getId()).append("\n");
         detalhes.append("Cidade: ").append(entrega.getCidade()).append("\n");
         detalhes.append("Distância: ").append(entrega.getDistancia()).append("\n");
-        detalhes.append("Caminhão: ").append(entrega.getVeiculo().getPlaca()).append(" - ")
+        detalhes.append("Veículo: ").append(entrega.getVeiculo().getPlaca()).append(" - ")
                 .append(entrega.getVeiculo().getModelo()).append("\n");
         detalhes.append("Cargas:\n");
 

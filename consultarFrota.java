@@ -48,13 +48,13 @@ public class consultarFrota extends JFrame {
             painel.add(botao);
         }
 
-
         centerPanel.add(painel, BorderLayout.CENTER);
-
 
         add(centerPanel, BorderLayout.CENTER);
 
-       
+        JButton closeButton = new JButton("Fechar");
+        closeButton.addActionListener(e -> dispose());
+        add(closeButton, BorderLayout.SOUTH);
 
         this.setVisible(true);
     }

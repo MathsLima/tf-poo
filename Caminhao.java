@@ -1,3 +1,5 @@
+import java.util.List;
+import java.util.ArrayList;
 public class Caminhao extends Veiculo {
     private int numeroEixos;
     private double altura;
@@ -21,6 +23,18 @@ public class Caminhao extends Veiculo {
 
     public double getComprimento() {
         return comprimento;
+    }
+    @Override
+    public List<String> toJanela(){
+        List<String> lista = new ArrayList<>();
+        lista.add("Veículo tipo Caminhão");
+        lista.add("Placa: " + getPlaca());
+        lista.add("Modelo: " + getModelo());
+        lista.add("Capacidade de carga: " + getCapacidadeCarga());
+        lista.add("Número de eixos: " + numeroEixos);
+        lista.add("Altura: " + altura);
+        lista.add("Comprimento: " + comprimento);
+        return lista;
     }
 
     @Override

@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Veiculo implements Comparable<Veiculo> {
     private String placa;
     private String modelo;
@@ -20,7 +23,14 @@ public abstract class Veiculo implements Comparable<Veiculo> {
     public double getCapacidadeCarga() {
         return capacidadeCarga;
     }
-
+    public List<String> toJanela(){
+        List<String> lista = new ArrayList<>();
+        lista.add("Veículo tipo Van");
+        lista.add("Placa: " + getPlaca());
+        lista.add("Modelo: " + getModelo());
+        lista.add("Capacidade de carga: " + getCapacidadeCarga());
+        return lista;
+    }
     @Override
     public int compareTo(Veiculo outro) {
         return this.placa.compareTo(outro.placa);

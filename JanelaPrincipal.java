@@ -44,12 +44,15 @@ public class JanelaPrincipal extends JFrame {
         JButton deletarEntrega = new JButton("Deletar Entrega");
         JButton consultarEntrega = new JButton("Consultar Entrega");
         JButton areaDados = new JButton("Area de Dados");
+        JButton consultarFrota = new JButton("Consultar Frota de Veículos");
+        
         // JButton consultarValores = new JButton("Consultar Frota de Veículos");
 
         painel.add(addEntrega);
         painel.add(deletarEntrega);
         painel.add(consultarEntrega);
         painel.add(areaDados);
+        painel.add(consultarFrota);
         // painel.add(consultarValores);
         centerPanel.add(painel, BorderLayout.CENTER);
 
@@ -90,6 +93,14 @@ public class JanelaPrincipal extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 AreaDados dados = new AreaDados(JanelaPrincipal.this, transportadora);
+                dados.setVisible(true);
+            }
+        });
+
+        consultarFrota.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                consultarFrota dados = new consultarFrota(transportadora);
                 dados.setVisible(true);
             }
         });
